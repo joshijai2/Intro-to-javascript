@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tempzsoft</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <form class="form1" name="form1">
+        <div class="input-container">
+            <input type="text" name="firstInput" id="firstInput" onkeyup="calcMax()">
+            <input type="text" name="secondInput" id="secondInput" onkeyup="calcMax()">
+        </div>
+        <div class="slider">
+            <label for="len" id="lenLabel">Length (max 0 chars):"</label>
+            <input type="range" id="len" name="len" min="0" max="0">
+            <span id="currentValue"></span>
+        </div>
+        <div class="submit">
+            <input type="button" value="Submit" onclick="return generateCatchy()">
+        </div>
+        <div class="output" id="output">
+
+        </div>
+    </form>
+    <script>
+        function calcMax() {
+            let i1 = document.form1.firstInput.value;
+            let i2 = document.form1.secondInput.value;
+            let sum = i1.length + i2.length;
+            let label = document.getElementById("lenLabel");
+            label.innerHTML = "Length (max " + sum + " chars):"
+            let range = document.getElementById("len");
+            range.max = sum;
+            let slider = document.getElementById("len");
+            slider.value = 0;
+            let output = document.getElementById("currentValue");
+            output.innerHTML = "Value: 0";
+        }
+
+        let slider = document.getElementById("len");
+        let output = document.getElementById("currentValue");
+        output.innerHTML = "Value: " + slider.value;
+        slider.oninput = function () {
+            output.innerHTML = "Value: " + this.value;
+        }
+
+        function generateCatchy() {
+            let i1 = document.form1.firstInput.value;
+            let i2 = document.form1.secondInput.value;
+            var len1 = i1.length;
+            var len2 = i2.length;
+            let sum = i1.length + i2.length;
+            let slider = document.getElementById("len");
+            let output = document.getElementById("output");
+            let len = slider.value;
+            if (len % 2) {
+                let l = Math.floor(slider.value / 2);
+                if (len1 > len2) {
+                    if (l > len2) {
+                        output.innerHTML = (i1.slice(0, len - len2) + i2.toLowerCase());
+                    }
+                    else {
+                        output.innerHTML = (i1.slice(0, l + 1) + i2.slice(0, l).toLowerCase());
+                    }
+                }
+                else {
+                    if (l > len1) {
+                        output.innerHTML = (i1 + i2.slice(0, len - len1).toLowerCase());
+                    }
+                    else {
+                        output.innerHTML = (i1.slice(0, l) + i2.slice(0, l + 1).toLowerCase());
+                    }
+
+                }
+            }
+            else {
+                let l = slider.value / 2;
+                if (l > Math.min(len1, len2)) {
+                    if (l > len2) {
+                        output.innerHTML = (i1.slice(0, len - len2) + i2.toLowerCase());
+                    }
+                    else {
+                        output.innerHTML = (i1 + i2.slice(0, len - len1).toLowerCase());
+                    }
+                }
+                else {
+                    output.innerHTML = (i1.slice(0, l) + i2.slice(0, l).toLowerCase());
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>

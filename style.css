@@ -1,0 +1,24 @@
+.form1{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+div{
+    padding: 20px;
+}
+.input-container input {
+    border-width: medium;
+    min-width: 150px;
+    width: 15%;
+    height: 30px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+input[type=button]{
+    font-weight: bold;
+    font-size: large;
+    width: 15%;
+    height: 10%;
+    border-radius: 5px;
+    padding: 10px 20px;
+    background-color: #bed;
+}
